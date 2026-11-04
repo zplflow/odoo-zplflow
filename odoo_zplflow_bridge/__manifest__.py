@@ -1,0 +1,21 @@
+{
+    'name': 'Zebra & Thermal Label Printing via zplflow',
+    'version': '18.0.1.0.0',
+    'summary': 'Direct high-speed Zebra thermal label printing (IPPS 631 TLS, Raw 9100, USB) without CUPS or IoT Box',
+    'category': 'Inventory/Delivery',
+    'author': 'zplflow',
+    'website': 'https://zplflow.com',
+    'license': 'LGPL-3',
+    'depends': ['stock', 'delivery'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/res_config_settings_views.xml',
+        'views/zplflow_printer_views.xml',
+        'views/stock_picking_views.xml',
+    ],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+    'price': 0.00,
+    'currency': 'EUR',
+}
