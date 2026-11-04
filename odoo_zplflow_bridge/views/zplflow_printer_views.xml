@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_zplflow_printer_tree" model="ir.ui.view">
+        <field name="name">zplflow.printer.tree</field>
+        <field name="model">zplflow.printer</field>
+        <field name="arch" type="xml">
+            <tree string="Zebra &amp; Thermal Printers">
+                <field name="name"/>
+                <field name="protocol"/>
+                <field name="ip_address"/>
+                <field name="port"/>
+                <field name="dpi"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_zplflow_printer_form" model="ir.ui.view">
+        <field name="name">zplflow.printer.form</field>
+        <field name="model">zplflow.printer</field>
+        <field name="arch" type="xml">
+            <form string="Thermal Printer">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="e.g. Shipping Zebra ZT411"/></h1>
+                    </div>
+                    <group>
+                        <group string="Connection">
+                            <field name="protocol"/>
+                            <field name="ip_address" invisible="protocol == 'usb_direct'"/>
+                            <field name="port" invisible="protocol == 'usb_direct'"/>
+                            <field name="tls_verify" invisible="protocol != 'ipps'"/>
+                            <field name="device_path" invisible="protocol != 'usb_direct'"/>
+                        </group>
+                        <group string="Printer Hardware &amp; Pipelines">
+                            <field name="dpi"/>
+                            <field name="pipeline_id"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_zplflow_printer" model="ir.actions.act_window">
+        <field name="name">Thermal Printers</field>
+        <field name="res_model">zplflow.printer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_zplflow_printer"
+              name="Thermal Printers (zplflow)"
+              parent="stock.menu_stock_config_settings"
+              action="action_zplflow_printer"
+              sequence="120"/>
+</odoo>
