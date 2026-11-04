@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>zplflow — Zebra &amp; Thermal Label Printing for Odoo</title>
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!-- Odoo Apps Store presentation banner — zplflow                 -->
+<!-- Self-contained, responsive, no external CSS or JS required.   -->
+<!-- ============================================================= -->
+
+<div class="zplflow_apps_description"
+     style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: #2b2b33; line-height: 1.6; max-width: 1080px; margin: 0 auto;">
+
+    <!-- ------------------------------------------------------- -->
+    <!-- Hero                                                      -->
+    <!-- ------------------------------------------------------- -->
+    <div class="zplflow_hero"
+         style="background: linear-gradient(135deg, #0f2a4a 0%, #14508c 55%, #0aa3a3 100%); border-radius: 14px; padding: 42px 32px; text-align: center; color: #ffffff;">
+
+        <div style="display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35); border-radius: 999px; padding: 6px 18px; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; margin-bottom: 20px;">
+            Universal Label Bridge &middot; ZPL &middot; ZPL II
+        </div>
+
+        <h1 style="margin: 0 0 14px 0; font-size: 34px; line-height: 1.22; font-weight: 800; color: #ffffff;">
+            Instant 1-Click Thermal Printing from Odoo
+        </h1>
+
+        <p style="margin: 0 auto; max-width: 720px; font-size: 17px; color: #e3f0ff;">
+            Send raw ZPL labels straight from your Odoo warehouse to Zebra and
+            thermal printers. No CUPS, no print server, no IoT Box subscription —
+            just one click and the label is out.
+        </p>
+
+        <div style="margin-top: 26px; display: inline-block; background: #ffd166; color: #23303f; border-radius: 10px; padding: 12px 24px; font-weight: 800; font-size: 15px;">
+            Save on Odoo IoT Box fees — print directly over IP or USB
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------------- -->
+    <!-- Key benefits                                              -->
+    <!-- ------------------------------------------------------- -->
+    <h2 style="margin: 38px 0 18px 0; font-size: 24px; font-weight: 800; color: #0f2a4a; text-align: center;">
+        Why warehouses choose zplflow
+    </h2>
+
+    <div class="zplflow_grid" style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+
+        <div class="zplflow_card"
+             style="flex: 1 1 250px; max-width: 340px; background: #f7f9fc; border: 1px solid #e1e8f2; border-radius: 12px; padding: 22px;">
+            <div style="font-size: 26px; line-height: 1; margin-bottom: 10px;">⚡</div>
+            <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 800; color: #0f2a4a;">
+                Instant 1-Click Printing
+            </h3>
+            <p style="margin: 0; font-size: 14px; color: #4a5566;">
+                Print shipping, product and pallet labels directly from any stock
+                transfer. The label is generated and dispatched in a single click.
+            </p>
+        </div>
+
+        <div class="zplflow_card"
+             style="flex: 1 1 250px; max-width: 340px; background: #f7f9fc; border: 1px solid #e1e8f2; border-radius: 12px; padding: 22px;">
+            <div style="font-size: 26px; line-height: 1; margin-bottom: 10px;">🔒</div>
+            <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 800; color: #0f2a4a;">
+                Modern IPPS over TLS
+            </h3>
+            <p style="margin: 0; font-size: 14px; color: #4a5566;">
+                Talks native IPP over TLS on port 631 to Link-OS V89.21.46Z and
+                newer, with RFC 8010 binary framing and encrypted label traffic.
+            </p>
+        </div>
+
+        <div class="zplflow_card"
+             style="flex: 1 1 250px; max-width: 340px; background: #f7f9fc; border: 1px solid #e1e8f2; border-radius: 12px; padding: 22px;">
+            <div style="font-size: 26px; line-height: 1; margin-bottom: 10px;">🖨️</div>
+            <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 800; color: #0f2a4a;">
+                Legacy Hardware Supported
+            </h3>
+            <p style="margin: 0; font-size: 14px; color: #4a5566;">
+                Print to older Zebra printers and print servers over raw socket
+                TCP on ports 9100 / 9001, or straight to a USB device.
+            </p>
+        </div>
+
+        <div class="zplflow_card"
+             style="flex: 1 1 250px; max-width: 340px; background: #f7f9fc; border: 1px solid #e1e8f2; border-radius: 12px; padding: 22px;">
+            <div style="font-size: 26px; line-height: 1; margin-bottom: 10px;">💸</div>
+            <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 800; color: #0f2a4a;">
+                No IoT Box Fees
+            </h3>
+            <p style="margin: 0; font-size: 14px; color: #4a5566;">
+                Remove the per-device IoT Box subscription and the CUPS server.
+                One module replaces the whole paid printing stack.
+            </p>
+        </div>
+
+        <div class="zplflow_card"
+             style="flex: 1 1 250px; max-width: 340px; background: #f7f9fc; border: 1px solid #e1e8f2; border-radius: 12px; padding: 22px;">
+            <div style="font-size: 26px; line-height: 1; margin-bottom: 10px;">🧩</div>
+            <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 800; color: #0f2a4a;">
+                Native ZPL, No Drivers
+            </h3>
+            <p style="margin: 0; font-size: 14px; color: #4a5566;">
+                Raw ZPL II is sent as-is at 203 or 300 DPI. No PDF conversion, no
+                rasterisation, no vendor driver, razor-sharp barcodes.
+            </p>
+        </div>
+
+        <div class="zplflow_card"
+             style="flex: 1 1 250px; max-width: 340px; background: #f7f9fc; border: 1px solid #e1e8f2; border-radius: 12px; padding: 22px;">
+            <div style="font-size: 26px; line-height: 1; margin-bottom: 10px;">🎁</div>
+            <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 800; color: #0f2a4a;">
+                6,000 Free Tokens / Month
+            </h3>
+            <p style="margin: 0; font-size: 14px; color: #4a5566;">
+                Get started for free on zplflow.com with 6,000 label tokens every
+                month — no credit card, no time limit.
+            </p>
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------------- -->
+    <!-- Supported protocols table                                 -->
+    <!-- ------------------------------------------------------- -->
+    <h2 style="margin: 40px 0 18px 0; font-size: 24px; font-weight: 800; color: #0f2a4a; text-align: center;">
+        Three protocols, every Zebra generation
+    </h2>
+
+    <div style="overflow-x: auto; border: 1px solid #e1e8f2; border-radius: 12px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 620px;">
+            <thead>
+                <tr style="background: #0f2a4a; color: #ffffff; text-align: left;">
+                    <th style="padding: 14px 16px; font-weight: 700;">Protocol</th>
+                    <th style="padding: 14px 16px; font-weight: 700;">Typical target</th>
+                    <th style="padding: 14px 16px; font-weight: 700;">Transport</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: #ffffff;">
+                    <td style="padding: 14px 16px; border-top: 1px solid #e1e8f2; font-weight: 700; color: #14508c;">
+                        Link-OS IPPS
+                    </td>
+                    <td style="padding: 14px 16px; border-top: 1px solid #e1e8f2; color: #4a5566;">
+                        Firmware V89.21.46Z and newer
+                    </td>
+                    <td style="padding: 14px 16px; border-top: 1px solid #e1e8f2; color: #4a5566;">
+                        TLS, port 631, RFC 8010 binary IPP
+                    </td>
+                </tr>
+                <tr style="background: #f7f9fc;">
+                    <td style="padding: 14px 16px; border-top: 1px solid #e1e8f2; font-weight: 700; color: #14508c;">
+                        Raw TCP Socket
+                    </td>
+                    <td style="padding: 14px 16px; border-top: 1px solid #e1e8f2; color: #4a5566;">
+                        Legacy Zebra printers and print servers
+                    </td>
+                    <td style="padding: 14px 16px; border-top: 1px solid #e1e8f2; color: #4a5566;">
+                        Plain stream, port 9100 / 9001
+                    </td>
+                </tr>
+                <tr style="background: #ffffff;">
+                    <td style="padding: 14px 16px; border-top: 1px solid #e1e8f2; font-weight: 700; color: #14508c;">
+                        Direct USB
+                    </td>
+                    <td style="padding: 14px 16px; border-top: 1px solid #e1e8f2; color: #4a5566;">
+                        Printer attached to the Odoo server
+                    </td>
+                    <td style="padding: 14px 16px; border-top: 1px solid #e1e8f2; color: #4a5566;">
+                        Linux character device <code style="background: #eef3fa; border-radius: 4px; padding: 1px 6px;">/dev/usb/lp0</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ------------------------------------------------------- -->
+    <!-- Compatibility strip                                       -->
+    <!-- ------------------------------------------------------- -->
+    <div style="margin-top: 34px; background: #eef7f7; border: 1px solid #c9e6e6; border-left: 6px solid #0aa3a3; border-radius: 10px; padding: 20px 24px;">
+        <p style="margin: 0 0 12px 0; font-size: 15px; font-weight: 800; color: #0f2a4a;">
+            Works with
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <span style="background: #ffffff; border: 1px solid #c9e6e6; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; color: #14508c;">Zebra Link-OS V89.21.46Z</span>
+            <span style="background: #ffffff; border: 1px solid #c9e6e6; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; color: #14508c;">IPPS 631 / TLS</span>
+            <span style="background: #ffffff; border: 1px solid #c9e6e6; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; color: #14508c;">Legacy port 9100</span>
+            <span style="background: #ffffff; border: 1px solid #c9e6e6; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; color: #14508c;">Port 9001</span>
+            <span style="background: #ffffff; border: 1px solid #c9e6e6; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; color: #14508c;">USB /dev/usb/lpX</span>
+            <span style="background: #ffffff; border: 1px solid #c9e6e6; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; color: #14508c;">Odoo 18.0 Community &amp; Enterprise</span>
+            <span style="background: #ffffff; border: 1px solid #c9e6e6; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; color: #14508c;">203 / 300 DPI</span>
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------------- -->
+    <!-- Zero dependency callout                                   -->
+    <!-- ------------------------------------------------------- -->
+    <div class="zplflow_compare" style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 34px;">
+        <div style="flex: 1 1 260px; background: #fff5f5; border: 1px solid #f3d2d2; border-radius: 12px; padding: 22px;">
+            <h3 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 800; color: #a33a3a;">
+                Without zplflow
+            </h3>
+            <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #6b4a4a;">
+                <li style="margin-bottom: 6px;">CUPS installation and maintenance</li>
+                <li style="margin-bottom: 6px;">Vendor drivers and PPD files</li>
+                <li style="margin-bottom: 6px;">Paid Odoo IoT Box per printer</li>
+                <li style="margin-bottom: 0;">Print server or external agent</li>
+            </ul>
+        </div>
+        <div style="flex: 1 1 260px; background: #f1fbf5; border: 1px solid #c8e9d6; border-radius: 12px; padding: 22px;">
+            <h3 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 800; color: #197a48;">
+                With zplflow
+            </h3>
+            <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #2f5c46;">
+                <li style="margin-bottom: 6px;">One Odoo module, pure Python</li>
+                <li style="margin-bottom: 6px;">Native ZPL II, no drivers</li>
+                <li style="margin-bottom: 6px;">No IoT Box subscription</li>
+                <li style="margin-bottom: 0;">Direct IP or USB printing</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------------- -->
+    <!-- Steps                                                     -->
+    <!-- ------------------------------------------------------- -->
+    <h2 style="margin: 40px 0 18px 0; font-size: 24px; font-weight: 800; color: #0f2a4a; text-align: center;">
+        Up and printing in three steps
+    </h2>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+        <div style="flex: 1 1 210px; background: #ffffff; border: 1px solid #e1e8f2; border-radius: 12px; padding: 20px;">
+            <div style="width: 34px; height: 34px; border-radius: 50%; background: #14508c; color: #ffffff; font-weight: 800; font-size: 16px; text-align: center; line-height: 34px; margin-bottom: 12px;">1</div>
+            <p style="margin: 0; font-size: 14px; color: #4a5566;">
+                Install the module and restart Odoo — no system packages needed.
+            </p>
+        </div>
+        <div style="flex: 1 1 210px; background: #ffffff; border: 1px solid #e1e8f2; border-radius: 12px; padding: 20px;">
+            <div style="width: 34px; height: 34px; border-radius: 50%; background: #14508c; color: #ffffff; font-weight: 800; font-size: 16px; text-align: center; line-height: 34px; margin-bottom: 12px;">2</div>
+            <p style="margin: 0; font-size: 14px; color: #4a5566;">
+                Add your printer and choose IPPS 631, raw TCP 9100 or USB.
+            </p>
+        </div>
+        <div style="flex: 1 1 210px; background: #ffffff; border: 1px solid #e1e8f2; border-radius: 12px; padding: 20px;">
+            <div style="width: 34px; height: 34px; border-radius: 50%; background: #0aa3a3; color: #ffffff; font-weight: 800; font-size: 16px; text-align: center; line-height: 34px; margin-bottom: 12px;">3</div>
+            <p style="margin: 0; font-size: 14px; color: #4a5566;">
+                Hit <strong>Print zplflow Label</strong> on any transfer and the label is out.
+            </p>
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------------- -->
+    <!-- Free tier CTA                                             -->
+    <!-- ------------------------------------------------------- -->
+    <div style="margin-top: 38px; background: linear-gradient(135deg, #0f2a4a 0%, #14508c 100%); border-radius: 14px; padding: 32px; text-align: center; color: #ffffff;">
+        <h2 style="margin: 0 0 10px 0; font-size: 24px; font-weight: 800; color: #ffffff;">
+            6,000 free tokens every month
+        </h2>
+        <p style="margin: 0 auto; max-width: 640px; font-size: 15px; color: #d8e8fb;">
+            Create your free zplflow.com account, grab an API key and start
+            printing immediately. No credit card, no commitment — and this Odoo
+            module stays LGPL-3.0 open source.
+        </p>
+        <div style="margin-top: 20px;">
+            <a href="https://zplflow.com"
+               style="display: inline-block; background: #ffd166; color: #23303f; text-decoration: none; font-weight: 800; font-size: 15px; padding: 13px 30px; border-radius: 10px;">
+                Get started free at zplflow.com
+            </a>
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------------- -->
+    <!-- Footer                                                    -->
+    <!-- ------------------------------------------------------- -->
+    <div style="margin-top: 26px; padding-top: 18px; border-top: 1px solid #e1e8f2; text-align: center; font-size: 13px; color: #7a8698;">
+        <p style="margin: 0 0 6px 0;">
+            <strong style="color: #0f2a4a;">odoo-zplflow</strong> — Universal Label
+            Bridge for Odoo WMS to Zebra and thermal printers.
+        </p>
+        <p style="margin: 0;">
+            Odoo 18.0 &middot; Community &amp; Enterprise &middot; License LGPL-3.0 &middot;
+            <a href="https://zplflow.com" style="color: #14508c; text-decoration: none; font-weight: 600;">zplflow.com</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
