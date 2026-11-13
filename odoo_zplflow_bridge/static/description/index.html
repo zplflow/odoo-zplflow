@@ -285,17 +285,19 @@
         <p style="margin: 0 0 12px 0; font-size: 14px; color: #5a4413; line-height: 1.6;">
             When using direct USB character devices (<code>/dev/usb/lpX</code>) on Linux or inside Docker containers:
         </p>
-        <div style="background: #232936; color: #f8fafc; border-radius: 8px; padding: 14px 18px; font-family: monospace; font-size: 13px; line-height: 1.5; margin-bottom: 14px;">
-            <span style="color: #94a3b8;"># 1. Mount device inside your docker-compose.yml:</span><br/>
-            services:<br/>
-            &nbsp;&nbsp;web:<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;devices:<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- "/dev/usb/lp2:/dev/usb/lp2"<br/><br/>
-            <span style="color: #94a3b8;"># 2. Grant write permissions on the host:</span><br/>
-            sudo chmod 666 /dev/usb/lp2<br/><br/>
-            <span style="color: #94a3b8;"># 3. (Optional) Make permissions permanent across reboots with a udev rule:</span><br/>
-            echo 'KERNEL=="lp[0-9]*", MODE="0666"' | sudo tee /etc/udev/rules.d/99-zebra.rules<br/>
-            sudo udevadm control --reload-rules &amp;&amp; sudo udevadm trigger
+        <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 16px 20px; font-family: Consolas, Monaco, 'Courier New', monospace; font-size: 13px; line-height: 1.6; color: #0f172a; margin-bottom: 14px;">
+            <div style="color: #475569; font-style: italic;"># 1. Mount device inside your docker-compose.yml:</div>
+            <div style="color: #0369a1; font-weight: 700;">services:</div>
+            <div style="color: #0369a1; font-weight: 700;">&nbsp;&nbsp;web:</div>
+            <div style="color: #0f172a;">&nbsp;&nbsp;&nbsp;&nbsp;devices:</div>
+            <div style="color: #0f172a;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span style="color: #059669; font-weight: 600;">"/dev/usb/lp2:/dev/usb/lp2"</span></div>
+            <br/>
+            <div style="color: #475569; font-style: italic;"># 2. Grant write permissions on the host:</div>
+            <div style="color: #0f172a; font-weight: 600;">sudo chmod 666 /dev/usb/lp2</div>
+            <br/>
+            <div style="color: #475569; font-style: italic;"># 3. (Optional) Make permissions permanent across reboots with a udev rule:</div>
+            <div style="color: #0f172a; font-weight: 600;">echo <span style="color: #059669;">'KERNEL=="lp[0-9]*", MODE="0666"'</span> | sudo tee /etc/udev/rules.d/99-zebra.rules</div>
+            <div style="color: #0f172a; font-weight: 600;">sudo udevadm control --reload-rules &amp;&amp; sudo udevadm trigger</div>
         </div>
         <p style="margin: 0; font-size: 13px; color: #785a15;">
             Native installations simply require adding the Odoo system user to the <code>lp</code> Linux group: <code>sudo usermod -aG lp odoo</code>.
@@ -312,12 +314,12 @@
         <p style="margin: 0 0 12px 0; font-size: 14px; color: #4a5566;">
             You can trigger label printing from server actions, automated workflows, or custom modules with a single line of Python:
         </p>
-        <div style="background: #1e293b; color: #f1f5f9; border-radius: 8px; padding: 14px 18px; font-family: monospace; font-size: 13px; line-height: 1.5;">
-            <span style="color: #94a3b8;"># Locate printer by name or default</span><br/>
-            printer = env['zplflow.printer'].search([('active', '=', True)], limit=1)<br/>
+        <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 16px 20px; font-family: Consolas, Monaco, 'Courier New', monospace; font-size: 13px; line-height: 1.6; color: #0f172a;">
+            <div style="color: #475569; font-style: italic;"># Locate printer by name or default</div>
+            <div style="color: #0f172a; font-weight: 600;">printer = env[<span style="color: #059669;">'zplflow.printer'</span>].search([(<span style="color: #059669;">'active'</span>, <span style="color: #0369a1;">'='</span>, <span style="color: #7c3aed;">True</span>)], limit=1)</div>
             <br/>
-            <span style="color: #94a3b8;"># Send raw ZPL string</span><br/>
-            printer.print_zpl_stream("^XA^PW812^LL1218^BY2,3,100^FO50,50^A0N,40,40^FDHello World^FS^XZ")
+            <div style="color: #475569; font-style: italic;"># Send raw ZPL string</div>
+            <div style="color: #0f172a; font-weight: 600;">printer.print_zpl_stream(<span style="color: #059669;">"^XA^PW812^LL1218^BY2,3,100^FO50,50^A0N,40,40^FDHello World^FS^XZ"</span>)</div>
         </div>
     </div>
 
