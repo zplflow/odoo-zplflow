@@ -14,6 +14,7 @@
         'views/stock_picking_views.xml',
         'views/product_label_layout_views.xml',
     ],
+    'images': ['static/description/banner.png'],
     'installable': True,
     'application': True,
     'auto_install': False,
