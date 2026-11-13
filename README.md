@@ -25,7 +25,9 @@ per printer from a single configuration form.
   - [1. Global settings](#1-global-settings)
   - [2. Register a printer](#2-register-a-printer)
   - [3. Assign a printer to an operation type or transfer](#3-assign-a-printer-to-an-operation-type-or-transfer)
-  - [4. Printing a label](#4-printing-a-label)
+  - [4. Printing shipping labels from transfers](#4-printing-shipping-labels-from-transfers)
+  - [5. Printing product labels directly to hardware](#5-printing-product-labels-directly-to-hardware)
+  - [6. Instant hardware test print](#6-instant-hardware-test-print)
 - [Protocol reference](#protocol-reference)
   - [Zebra Link-OS IPPS (port 631, TLS)](#zebra-link-os-ipps-port-631-tls)
   - [Raw TCP socket (port 9100 / 9001)](#raw-tcp-socket-port-9100--9001)
@@ -164,10 +166,28 @@ library.
 
 6. **Grant USB access** (only if you plan to print via `/dev/usb/lpX`):
 
-   ```bash
-   sudo usermod -aG lp <odoo-system-user>
-   sudo systemctl restart odoo
-   ```
+   - **Native installations**:
+     ```bash
+     sudo usermod -aG lp <odoo-system-user>
+     sudo systemctl restart odoo
+     ```
+
+   - **Docker deployments**: Mount the device in `docker-compose.yml`:
+     ```yaml
+     services:
+       web:
+         devices:
+           - "/dev/usb/lp2:/dev/usb/lp2"
+     ```
+     And grant write permissions on the host (or set a permanent udev rule):
+     ```bash
+     # Temporary:
+     sudo chmod 666 /dev/usb/lp2
+
+     # Permanent across reboots:
+     echo 'KERNEL=="lp[0-9]*", MODE="0666"' | sudo tee /etc/udev/rules.d/99-zebra.rules
+     sudo udevadm control --reload-rules && sudo udevadm trigger
+     ```
 
 ---
 
@@ -206,23 +226,44 @@ record:
 ### 3. Assign a printer to an operation type or transfer
 
 Open any inventory transfer (*Inventory → Operations → Transfers*), go to the
-**Other Info** tab and pick the **ZplFlow Thermal Printer** you registered. The
-assignment is stored on the transfer, so automated workflows (receipts,
-deliveries, internal transfers) can each target a different physical printer.
+**Other Info** tab and pick the **ZplFlow Thermal Printer** you registered. If only
+one active printer exists, ZplFlow selects it automatically.
 
-### 4. Printing a label
+### 4. Printing shipping labels from transfers
 
-From a transfer form, click **Print Thermal Label (ZplFlow)**. The module:
+From any transfer form (Delivery Orders or Receipts), click
+**Print Thermal Label (ZplFlow)** in the header bar. The module:
 
-1. Builds (or receives) the raw ZPL stream `^XA ... ^XZ`.
-2. Routes it through the transport selected on the printer record.
-3. Reports any printer-level error back to the user as a clear Odoo message.
+1. Generates an industry-standard 4×6" shipping label containing the transfer
+   name, destination partner address, carrier tracking, and calibrated Code 128 barcode.
+2. Optionally invokes your configured ZplFlow cloud pipeline for dynamic label enrichment.
+3. Routes the stream directly to the assigned physical printer.
+4. Confirms the dispatch with a success notification.
+
+### 5. Printing product labels directly to hardware
+
+Standard Odoo downloads `.zpl` or `.pdf` files to your computer when clicking
+*Print Labels* on product records. ZplFlow overrides this behavior:
+
+1. Open any product under *Inventory → Products → Products* and click **Print Labels**.
+2. In the *Choose Labels Layout* wizard, your active ZplFlow printer is auto-selected.
+3. Leave format as **ZPL Labels** (or select a PDF layout if an API key is configured).
+4. Enter quantity and click **Confirm**: the labels are emitted straight from your
+   thermal printer without downloading any files to disk.
+
+### 6. Instant hardware test print
+
+On any printer record (*Inventory → Configuration → Thermal Printers (ZplFlow)*), click
+the **Test Print** button in the header. ZplFlow sends a diagnostic label that validates:
+- Network or USB connectivity.
+- Protocol negotiation (IPPS, raw TCP, or character device).
+- Resolution and module width (`^BY2,3,100`).
 
 You can also call the printer directly from server actions or automated rules:
 
 ```python
-printer = env['zplflow.printer'].search([('name', '=', 'Shipping Zebra ZT411')], limit=1)
-printer.print_zpl_stream("^XA^FO50,50^FDHello Odoo^FS^XZ")
+printer = env['zplflow.printer'].search([('active', '=', True)], limit=1)
+printer.print_zpl_stream("^XA^PW812^LL1218^BY2,3,100^FO50,50^A0N,40,40^FDHello Odoo^FS^XZ")
 ```
 
 ---
