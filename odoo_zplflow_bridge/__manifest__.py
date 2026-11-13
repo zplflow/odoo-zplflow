@@ -1,6 +1,6 @@
 {
     'name': 'Zebra & Thermal Label Printing via ZplFlow',
-    'version': '18.0.1.0.0',
+    'version': '17.0.1.0.0',
     'summary': 'Direct high-speed Zebra thermal label printing (IPPS 631 TLS, Raw 9100, USB) via ZplFlow without CUPS or IoT Box',
     'category': 'Inventory/Delivery',
     'author': 'ZplFlow',

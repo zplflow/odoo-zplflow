@@ -128,7 +128,7 @@ library.
 
 ## Requirements
 
-- Odoo 18.0 (Community or Enterprise)
+- Odoo 17.0 (Community or Enterprise)
 - Python 3.10 or newer
 - `requests` (for the IPPS transport)
 - `stock` and `delivery` Odoo modules (installed automatically as dependencies)
