@@ -4,7 +4,7 @@
     'summary': 'Direct high-speed Zebra thermal label printing (IPPS 631 TLS, Raw 9100, USB) via ZplFlow without CUPS or IoT Box',
     'category': 'Inventory/Delivery',
     'author': 'ZplFlow',
-    'website': 'https://zplflow.com',
+    'website': 'https://www.zplflow.io',
     'license': 'LGPL-3',
     'depends': ['stock', 'delivery'],
     'data': [

@@ -63,7 +63,7 @@ Highlights:
   `Print-Job` request, which is exactly what Zebra Link-OS firmware expects.
 - **Configurable per printer** — mix IPPS, legacy TCP and USB printers in the
   same database.
-- **Free tier on zplflow.com** — 6,000 label tokens per month, no credit card.
+- **Free tier on www.zplflow.io** — 6,000 label tokens per month, no credit card.
 
 ---
 
@@ -200,7 +200,7 @@ Open *Settings → General Settings* and scroll to the **ZplFlow** section:
 | Setting | Description |
 | --- | --- |
 | **ZplFlow API URL** | Base URL of the ZplFlow service. Default: `https://api.zplflow.io`. |
-| **ZplFlow API Key** | Your personal API key from [zplflow.com](https://zplflow.com). Required only for cloud-assisted label generation. |
+| **ZplFlow API Key** | Your personal API key from [www.zplflow.io](https://www.zplflow.io). Required only for cloud-assisted label generation. |
 | **Default Pipeline ID** | Fallback ZplFlow pipeline used when a printer has no pipeline of its own. |
 
 The free plan includes **6,000 tokens per month** — enough for thousands of

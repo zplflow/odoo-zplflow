@@ -103,7 +103,7 @@ class ZPLFlowPrinter(models.Model):
 ^FO80,480^BCN,100,Y,N,N^FD{self.name[:16]}^FS
 ^FO80,680^GB652,2,2^FS
 ^FO80,720^A0N,22,22^FDUniversal Label Bridge for Odoo WMS via ZplFlow^FS
-^FO80,755^A0N,20,20^FDhttps://zplflow.com^FS
+^FO80,755^A0N,20,20^FDhttps://www.zplflow.io^FS
 ^XZ"""
 
         applied_pipeline = False
