@@ -15,7 +15,7 @@
         'views/product_label_layout_views.xml',
     ],
     'installable': True,
-    'application': False,
+    'application': True,
     'auto_install': False,
     'price': 0.00,
     'currency': 'EUR',
