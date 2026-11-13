@@ -4,14 +4,14 @@
         <field name="name">zplflow.printer.tree</field>
         <field name="model">zplflow.printer</field>
         <field name="arch" type="xml">
-            <tree string="Zebra &amp; Thermal Printers">
+            <list string="Zebra &amp; Thermal Printers">
                 <field name="name"/>
                 <field name="protocol"/>
                 <field name="ip_address"/>
                 <field name="port"/>
                 <field name="dpi"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -20,6 +20,12 @@
         <field name="model">zplflow.printer</field>
         <field name="arch" type="xml">
             <form string="Thermal Printer">
+                <header>
+                    <button name="action_test_print"
+                            string="Test Print"
+                            type="object"
+                            class="oe_highlight"/>
+                </header>
                 <sheet>
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only"/>
@@ -33,7 +39,7 @@
                             <field name="tls_verify" invisible="protocol != 'ipps'"/>
                             <field name="device_path" invisible="protocol != 'usb_direct'"/>
                         </group>
-                        <group string="Printer Hardware &amp; Pipelines">
+                        <group string="Printer Hardware &amp; ZplFlow Pipelines">
                             <field name="dpi"/>
                             <field name="pipeline_id"/>
                             <field name="active"/>
@@ -47,11 +53,11 @@
     <record id="action_zplflow_printer" model="ir.actions.act_window">
         <field name="name">Thermal Printers</field>
         <field name="res_model">zplflow.printer</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_zplflow_printer"
-              name="Thermal Printers (zplflow)"
+              name="Thermal Printers (ZplFlow)"
               parent="stock.menu_stock_config_settings"
               action="action_zplflow_printer"
               sequence="120"/>

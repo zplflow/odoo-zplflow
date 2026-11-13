@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_label_layout_form_inherit_zplflow" model="ir.ui.view">
+        <field name="name">product.label.layout.form.inherit.zplflow</field>
+        <field name="model">product.label.layout</field>
+        <field name="inherit_id" ref="product.product_label_layout_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pricelist_id']" position="before">
+                <field name="zplflow_printer_id" placeholder="Select to print directly via ZplFlow..."/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

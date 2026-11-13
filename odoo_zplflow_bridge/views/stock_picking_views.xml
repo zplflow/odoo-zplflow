@@ -7,9 +7,9 @@
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button name="action_print_zplflow_label"
-                        string="Print Thermal Label (zplflow)"
+                        string="Print Thermal Label (ZplFlow)"
                         type="object"
-                        class="btn-secondary"/>
+                        class="oe_highlight"/>
             </xpath>
             <xpath expr="//field[@name='origin']" position="after">
                 <field name="zplflow_printer_id"/>

@@ -4,6 +4,7 @@
 import socket
 import struct
 import logging
+import base64
 
 try:
     import requests
@@ -58,7 +59,7 @@ _logger = logging.getLogger(__name__)
 
 class ZPLFlowPrinter(models.Model):
     _name = 'zplflow.printer'
-    _description = 'Zebra Thermal Printer via zplflow'
+    _description = 'Zebra Thermal Printer via ZplFlow'
 
     name = fields.Char(string='Printer Name', required=True)
     protocol = fields.Selection([
@@ -76,12 +77,96 @@ class ZPLFlowPrinter(models.Model):
     )
     device_path = fields.Char(string='USB Device Path', default='/dev/usb/lp0')
     dpi = fields.Selection([('203', '203 DPI'), ('300', '300 DPI')], default='203', required=True)
-    pipeline_id = fields.Char(string='Default zplflow Pipeline ID')
+    pipeline_id = fields.Char(string='Default ZplFlow Pipeline ID')
     active = fields.Boolean(string='Active', default=True)
+
+    def action_test_print(self):
+        self.ensure_one()
+        proto_name = self.protocol
+        if hasattr(self, '_fields') and 'protocol' in self._fields:
+            proto_name = dict(self._fields['protocol'].selection).get(self.protocol, self.protocol)
+
+        target = self.device_path if self.protocol == 'usb_direct' else f"{self.ip_address}:{self.port}"
+        zpl = f"""^XA
+^PW812
+^LL1218
+^BY2,3,100
+^FO40,40^GB732,1138,4^FS
+^FO80,90^A0N,45,45^FDZplFlow Test Label^FS
+^FO80,150^GB652,2,2^FS
+^FO80,190^A0N,28,28^FDPrinter: {self.name}^FS
+^FO80,235^A0N,26,26^FDProtocol: {proto_name}^FS
+^FO80,280^A0N,26,26^FDResolution: {self.dpi} DPI^FS
+^FO80,325^A0N,26,26^FDTarget: {target}^FS
+^FO80,380^GB652,2,2^FS
+^FO80,420^A0N,28,28^FDStatus: READY TO PRINT^FS
+^FO80,480^BCN,100,Y,N,N^FD{self.name[:16]}^FS
+^FO80,680^GB652,2,2^FS
+^FO80,720^A0N,22,22^FDUniversal Label Bridge for Odoo WMS via ZplFlow^FS
+^FO80,755^A0N,20,20^FDhttps://zplflow.com^FS
+^XZ"""
+
+        applied_pipeline = False
+        api_key = self.env['ir.config_parameter'].sudo().get_param('zplflow.api_key')
+        api_url = (self.env['ir.config_parameter'].sudo().get_param('zplflow.api_url') or 'https://api.zplflow.io').rstrip('/')
+        pipeline_id = self.pipeline_id or self.env['ir.config_parameter'].sudo().get_param('zplflow.default_pipeline_id')
+        if api_key and pipeline_id and requests:
+            try:
+                _logger.info("Applying test print pipeline '%s' via %s", pipeline_id, api_url)
+                zpl_b64 = base64.b64encode(zpl.encode('utf-8')).decode('ascii')
+                headers = {
+                    'Authorization': f'Bearer {api_key}',
+                    'X-API-Key': api_key,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                }
+                payload = {
+                    'documents': [
+                        {
+                            'zpl_base64': zpl_b64,
+                            'variables': {'name': self.name},
+                        }
+                    ]
+                }
+                res = requests.post(
+                    f"{api_url}/v1/pipelines/{pipeline_id}/apply",
+                    json=payload,
+                    headers=headers,
+                    timeout=8.0
+                )
+                _logger.info("zplflow API pipeline response: %s", res.status_code)
+                if res.status_code == 200:
+                    data = res.json()
+                    docs = data.get('documents') or []
+                    if docs and 'zpl_base64' in docs[0]:
+                        zpl = base64.b64decode(docs[0]['zpl_base64']).decode('utf-8')
+                        applied_pipeline = True
+                        _logger.info("Pipeline %s successfully applied to test label", pipeline_id)
+                else:
+                    _logger.warning("zplflow API returned error %s: %s", res.status_code, res.text)
+            except Exception as e:
+                _logger.warning("Could not apply pipeline on test label: %s", str(e))
+
+        self.print_zpl_stream(zpl)
+        msg = _("Test label sent to printer '%s'") % self.name
+        if applied_pipeline:
+            msg += _(" (ZplFlow pipeline '%s' applied)") % pipeline_id
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _("Print Success"),
+                'message': msg,
+                'type': 'success',
+                'sticky': False,
+            }
+        }
 
     def print_zpl_stream(self, zpl_data):
         self.ensure_one()
         raw_bytes = zpl_data.encode('utf-8') if isinstance(zpl_data, str) else zpl_data
+        _logger.info("=== ZplFlow RAW ZPL SENT TO %s (%s, %d bytes) ===\n%s\n=== END RAW ZPL ===",
+                     self.name, self.protocol, len(raw_bytes), raw_bytes.decode('utf-8', errors='replace'))
         if self.protocol == 'ipps':
             return self._print_via_ipps(raw_bytes)
         elif self.protocol == 'raw_tcp':

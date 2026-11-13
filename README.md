@@ -160,7 +160,7 @@ library.
    developer mode first).
 
 5. **Install the module**: search for *Zebra & Thermal Label Printing via
-   zplflow* and click **Activate**.
+   ZplFlow* and click **Activate**.
 
 6. **Grant USB access** (only if you plan to print via `/dev/usb/lpX`):
 
@@ -175,20 +175,20 @@ library.
 
 ### 1. Global settings
 
-Open *Settings → General Settings* and scroll to the **zplflow** section:
+Open *Settings → General Settings* and scroll to the **ZplFlow** section:
 
 | Setting | Description |
 | --- | --- |
-| **zplflow API URL** | Base URL of the zplflow service. Default: `https://api.zplflow.com`. |
-| **zplflow API Key** | Your personal API key from [zplflow.com](https://zplflow.com). Required only for cloud-assisted label generation. |
-| **Default Pipeline ID** | Fallback zplflow pipeline used when a printer has no pipeline of its own. |
+| **ZplFlow API URL** | Base URL of the ZplFlow service. Default: `https://api.zplflow.io`. |
+| **ZplFlow API Key** | Your personal API key from [zplflow.com](https://zplflow.com). Required only for cloud-assisted label generation. |
+| **Default Pipeline ID** | Fallback ZplFlow pipeline used when a printer has no pipeline of its own. |
 
 The free plan includes **6,000 tokens per month** — enough for thousands of
 shipping labels.
 
 ### 2. Register a printer
 
-Go to *Inventory → Configuration → Thermal Printers (zplflow)* and create a
+Go to *Inventory → Configuration → Thermal Printers (ZplFlow)* and create a
 record:
 
 | Field | Description |
@@ -200,19 +200,19 @@ record:
 | **Verify TLS Certificate** | Leave unchecked for printers with self-signed certificates (the common case). |
 | **USB Device Path** | Path to the character device, default `/dev/usb/lp0`. |
 | **DPI** | `203` or `300` DPI — must match the print head resolution. |
-| **Default zplflow Pipeline ID** | Optional pipeline used to generate ZPL for this printer. |
+| **Default ZplFlow Pipeline ID** | Optional pipeline used to generate ZPL for this printer. |
 | **Active** | Uncheck to disable the printer without deleting it. |
 
 ### 3. Assign a printer to an operation type or transfer
 
 Open any inventory transfer (*Inventory → Operations → Transfers*), go to the
-**Other Info** tab and pick the **zplflow Thermal Printer** you registered. The
+**Other Info** tab and pick the **ZplFlow Thermal Printer** you registered. The
 assignment is stored on the transfer, so automated workflows (receipts,
 deliveries, internal transfers) can each target a different physical printer.
 
 ### 4. Printing a label
 
-From a transfer form, click **Print zplflow Label**. The module:
+From a transfer form, click **Print Thermal Label (ZplFlow)**. The module:
 
 1. Builds (or receives) the raw ZPL stream `^XA ... ^XZ`.
 2. Routes it through the transport selected on the printer record.

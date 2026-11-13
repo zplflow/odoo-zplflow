@@ -18,15 +18,15 @@ class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     zplflow_api_url = fields.Char(
-        string='zplflow API URL',
-        default='https://api.zplflow.com',
+        string='ZplFlow API URL',
+        default='https://api.zplflow.io',
         config_parameter='zplflow.api_url'
     )
     zplflow_api_key = fields.Char(
-        string='zplflow API Key',
+        string='ZplFlow API Key',
         config_parameter='zplflow.api_key'
     )
     zplflow_default_pipeline_id = fields.Char(
-        string='Default Pipeline ID',
+        string='ZplFlow Default Pipeline ID',
         config_parameter='zplflow.default_pipeline_id'
     )

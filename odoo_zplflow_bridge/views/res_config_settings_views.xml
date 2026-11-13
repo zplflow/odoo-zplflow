@@ -3,12 +3,20 @@
     <record id="res_config_settings_view_form_zplflow" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.inherit.zplflow</field>
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="stock.res_config_settings_view_form"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('settings')]" position="inside">
-                <app data-string="zplflow" string="zplflow Thermal Printing" name="zplflow">
-                    <block title="zplflow Cloud API Configuration">
-                        <setting id="zplflow_api_setting" help="Configure your zplflow Cloud API credentials">
+            <xpath expr="//form" position="inside">
+                <app data-string="ZplFlow"
+                     string="ZplFlow Thermal Printing"
+                     name="odoo_zplflow_bridge"
+                     logo="/odoo_zplflow_bridge/static/description/icon.png">
+                    <block title="ZplFlow Cloud API Configuration">
+                        <div class="mb-3">
+                            <img src="/odoo_zplflow_bridge/static/description/logo.svg"
+                                 alt="ZplFlow"
+                                 style="height: 36px;"/>
+                        </div>
+                        <setting id="zplflow_api_setting" help="Configure your ZplFlow Cloud API credentials">
                             <div class="content-group">
                                 <div class="row mt16">
                                     <label for="zplflow_api_url" class="col-lg-3 o_light_label"/>
